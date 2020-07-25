@@ -1,0 +1,35 @@
+{% extends "entries/base.html" %}   
+
+{% block content %}  
+      <div class="col-md-8">
+
+        <!-- Blog Post -->
+        <div class="card mb-4 mt-4">
+          <div class="card-header">
+          Login to your Account
+          </div>
+          <div class="card-body">
+          <form method="POST">
+            {% csrf_token %} <!--this is for security lang-->
+            <table>
+            {{form.as_table}}
+            </table>
+            <br>
+            &emsp;&emsp;&emsp;&emsp;&emsp;
+            <button type="submit" class="btn btn-primary">Login
+            </button>&emsp;
+            <a href="{% url 'register' %}" class="btn btn-info">Create a New Account
+            </a>
+          </form>
+          </div>
+        </div>
+
+      </div>
+
+{% endblock %}  
+
+{% block login %}
+{% endblock %}
+
+{% block menu %}
+{% endblock %}
