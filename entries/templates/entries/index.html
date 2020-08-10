@@ -6,17 +6,39 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 
+{% if user.username %}
+{% else %}
+<a href="{% url 'login' %}" class="btn btn-success btn-sm">Log in to post an entry</a>
+
+{% endif %}
+
       {% for entry in blog_entries %}
         <!-- Blog Post -->
         <div class="card mb-4 mt-4">
           <div class="card-body">
             <h2 class="card-title">{{entry.entry_title}}</h2>
             <p class="card-text">{{entry.entry_text | truncatechars:100}}</p>
-            <a href="{% url 'entry-detail' entry.pk %}" class="btn btn-primary btn-sm">Read More &rarr;</a>
+            {% if entry.image %}
+            <img src="{{ entry.image.url }}" class="image_responsive" style="min-width:50px;max-width:150px">
+            <br><br>
+            {% endif %}
+            
+            <a href="{% url 'entry-detail' entry.pk %}" class="btn btn-light btn-sm" style="background-color:#deada1">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">
             Posted on {{entry.entry_date}} by
-            <span class= "text-info mr-2">{{entry.entry_author}}</span>
+            <span class= "text-info mr-2"><a href="{% url 'user_profile' pk=entry.entry_author.pk %}">{{entry.entry_author}}</a></span> 
+            {% if entry.comments.all.count == 0 %}
+              ~ &nbsp;&nbsp;No comments&nbsp;&nbsp;
+            {% elif entry.comments.all.count == 1 %}
+              ~ &nbsp;&nbsp;<a href="{% url 'entry-detail' entry.pk %}">{{entry.comments.all.count}} comment</a>&nbsp;&nbsp;
+            {% else %}
+              ~ &nbsp;&nbsp;<a href="{% url 'entry-detail' entry.pk %}">{{entry.comments.all.count}} comments</a>&nbsp;&nbsp;
+            {% endif %}
+            {% if entry.entry_author == user %}
+              ~ &nbsp;&nbsp;
+              <a style="background-color:#6D748C" class="btn btn-light btn-sm py-0" href="{% url 'delete-entry' pk=entry.pk %}">Delete Post</a>
+            {% endif %}
           </div>
         </div> 
         {% endfor %}

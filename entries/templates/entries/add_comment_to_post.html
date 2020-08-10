@@ -1,0 +1,40 @@
+{% extends "entries/base.html" %}   
+{% load crispy_forms_tags %}
+
+{% block content %}  
+      <div class="col-md-8">
+
+        <a href="{% url 'entry-detail' entry.pk %}"> Back to Entry </a>
+        <!-- Blog Post -->
+        <div class="card mb-4 mt-4">
+          <div class="card-header">
+          New Comment
+          </div>
+          <div class="card-body">
+          <form method="POST">
+            {% csrf_token %} <!--this is for security lang-->
+            {{form|crispy}}
+            <button style="background-color:#FF8362" type="submit" class="btn btn-light">Send Comment</button>
+          </form>
+          </div>
+        </div>
+
+      </div>
+{% endblock %}  
+
+{% block login %}
+<br>
+      <div class="card my-4">
+          <h5 class="card-header text-center">Logged in Information</h5>
+          <div class="card-body">
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <p> <strong>Username:</strong> {{user.username}} </p>
+                </li>
+                <li>
+                    <p> <strong>Email:</strong> {{user.email}}</p>
+                </li>
+            </ul>    
+          </div>
+        </div>
+{% endblock %}

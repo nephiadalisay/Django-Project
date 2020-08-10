@@ -1,24 +1,36 @@
 {% extends "entries/base.html" %}   
+{% load crispy_forms_tags %}
 
 {% block content %}  
-      <div class="col-md-8">
+<div class="col-md-8">
+  <a href="{% url 'blog-home' %}"> Back to Home </a>
+    <div class="card mb-4 mt-4">
+      <div class="card-header">
+        Create Blog Post
+      </div>
+      <div class="card-body">
+        <form method="POST" style="width:100%" enctype="multipart/form-data">
+          {% csrf_token %} <!--this is for security lang-->
+            {{form|crispy}}
+          <button type="submit" class="btn btn-light" style="background-color:#FF8362">Post Entry</button>
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}
 
-        <a href="{% url 'blog-home' %}"> Back to Home </a>
-        <!-- Blog Post -->
-        <div class="card mb-4 mt-4">
-          <div class="card-header">
-          Create Blog Post
-          </div>
+{% block login %}<br>
+      <div class="card my-4">
+          <h5 class="card-header text-center">Logged in Information</h5>
           <div class="card-body">
-          <form method="POST">
-            {% csrf_token %} <!--this is for security lang-->
-            <table>
-            {{form.as_table}}
-            </table>
-            <button type="submit" class="btn btn-primary">Post Entry</button>
-          </form>
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <p> <strong>Username:</strong> {{user.username}} </p>
+                </li>
+                <li>
+                    <p> <strong>Email:</strong> {{user.email}}</p>
+                </li>
+            </ul>    
           </div>
         </div>
-
-      </div>
 {% endblock %}  

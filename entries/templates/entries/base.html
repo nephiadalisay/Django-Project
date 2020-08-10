@@ -18,14 +18,17 @@
   <!-- Custom styles for this template -->
   <link href="{% static 'entries/css/blog-home.css" rel="stylesheet' %}">
 
+  <!-- Favicon-->
+  <link rel="icon" href="https://icons.iconarchive.com/icons/thesquid.ink/free-flat-sample/1024/rubber-duck-icon.png">
+
 </head>
 
-<body>
+<body style="background-color:#f5f5ff">
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color:#3C4663">
     <div class="container">
-      <a class="navbar-brand" href="#">Nephia's Blog</a>
+      <a class="navbar-brand" href="{% url 'blog-home' %}">Nephia's Blog</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -62,8 +65,8 @@
     <div class="col-md-4">
 
                 <!-- Side Widget -->
-{% block login %}
-      <div class="card my-4">
+{% block login %}<br>
+      <div class="card my-0">
           <h5 class="card-header text-center">Logged in Information</h5>
           <div class="card-body">
             <ul class="list-unstyled mb-0">
@@ -76,6 +79,19 @@
             </ul>    
           </div>
         </div>
+        <br>
+          <div>
+            <a href="https://www.facebook.com/nephiadalisay">
+              <input type="image" style="width:40px" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png">
+            </a>&emsp;
+            <a href="https://twitter.com/VitaminnB1">
+              <input type="image" style="width:40px" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-twitter-512.png">
+            </a>&emsp;
+            <a href="https://www.instagram.com/neph.ia">
+              <input type="image" style="width:40px" src="https://image.flaticon.com/icons/png/512/174/174855.png">
+            </a>&emsp;
+          </div>
+               
 {% endblock %}
       </div>
 
@@ -85,10 +101,13 @@
   </div>
   <!-- /.container -->
 
+  {% block comment %}
+  {% endblock %}
+
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5" style="background-color:#3C4663">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Nephia's Website 2020</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Nephia's Blog 2020</p>
     </div>
     <!-- /.container -->
   </footer>

@@ -1,0 +1,74 @@
+{% extends "entries/base.html" %}   
+
+
+
+{% block content %}  
+<div class="container-fluid padding">
+  <div class="row text-center padding">
+    <div class="col-md-4">
+      <div class="card my-0 padding">
+        <div class="profile_info" style="margin:1rem;">
+          <center>
+          <img src="https://nyarisk.com/wp-content/themes/nyarisk/assets/img/default-profile.png" style="width:60%">
+          <br><br>
+          <h4>{{entry_user.username}}</h4>
+          <p>{{entry_user.email}}</p>
+          </center>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class="card my-0 padding">
+        <div class="profile_info" style="margin:1rem;">
+          <center>
+            <hr class="my-2">
+            <div style="background-color:lightgrey"><h3>Shared Posts</h3></div>
+            <hr class="my-2"><br>
+            {% for entry in entry_user_posts %}
+                <div class="card my-0 padding" style="text-align:left">
+                  <div style="margin:1rem;">
+                    <h4 class="card-title"><a href="{% url 'entry-detail' pk=entry.pk %}">{{entry.entry_title}}</a></h4>
+                    <p class="card-text">{{entry.entry_text | truncatechars:100}}</p>
+                    <div style="color:grey">
+                      Posted on {{entry.entry_date}}
+                    </div>
+                  </div>
+                </div><br>
+            {% endfor %}
+          </center>
+        </div>
+      </div>
+      <br><br>
+      <div class="card my-0 padding">
+        <div class="profile_info" style="margin:1rem;">
+          <center>
+            <hr class="my-2">
+            <div style="background-color:lightgrey"><h3>Comments Made</h3></div>
+            <hr class="my-2"><br>
+            {% for comment in entry_user_comments %}
+                <div class="card my-0 padding" style="text-align:left">
+                  <div style="margin:1rem">
+                    <h4 class="card-title">"{{comment.text}}"</h4>
+                    <div style="color:gray">
+                    comment made on post: <a href="{% url 'entry-detail' pk=comment.entry.pk %}">{{comment.entry.entry_title}}</a> on {{comment.entry.entry_date}}
+                    </div>
+                  </div>
+                </div><br>
+            {% endfor %}
+          </center>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+<br></div>
+
+
+
+
+{% endblock %}  
+
+{% block login %}
+{% endblock %}

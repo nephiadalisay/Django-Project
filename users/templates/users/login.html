@@ -1,4 +1,5 @@
 {% extends "entries/base.html" %}   
+{% load crispy_forms_tags %}
 
 {% block content %}  
       <div class="col-md-8">
@@ -11,12 +12,9 @@
           <div class="card-body">
           <form method="POST">
             {% csrf_token %} <!--this is for security lang-->
-            <table>
-            {{form.as_table}}
-            </table>
+            {{form|crispy}}
             <br>
-            &emsp;&emsp;&emsp;&emsp;&emsp;
-            <button type="submit" class="btn btn-primary">Login
+            <button type="submit" class="btn btn-success">Login
             </button>&emsp;
             <a href="{% url 'register' %}" class="btn btn-info">Create a New Account
             </a>

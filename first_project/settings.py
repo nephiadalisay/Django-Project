@@ -25,12 +25,14 @@ SECRET_KEY = '-zua(7^2+4q+otf%*@2m@#wdg3=fe4yd2c98-8n1@#5crcc2bq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_cleanup',
+    'crispy_forms',
     'users',
     'entries',
     'django.contrib.admin',
@@ -124,3 +126,9 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'blog-home'
 
 LOGIN_URL = 'login'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'first_project/media')
+
+MEDIA_URL = '/media/'
